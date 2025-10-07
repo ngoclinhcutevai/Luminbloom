@@ -18,50 +18,40 @@ public class Semi2DStateMachine : MonoBehaviour
     void Update()
     {
         Vector2 moveInput = movement.GetMoveInput();
-        
-        if (isSleeping && moveInput.magnitude > 0.01f)
+        float magnitude = moveInput.magnitude;
+
+        // Wake up if moving
+        if (isSleeping && magnitude > 0.01f)
         {
             isSleeping = false;
             animator.Play("Idle" + lastDirection);
             return;
         }
 
-        if (moveInput.magnitude > 0.01f)
+        // Movement handling
+        if (magnitude > 0.01f)
         {
-            // Walking
-            if (Mathf.Abs(moveInput.x) >= Mathf.Abs(moveInput.y))
-            {
-                if (moveInput.x > 0)
-                {
-                    animator.Play("WalkRight");
-                    lastDirection = "Right";
-                }
-                else
-                {
-                    animator.Play("WalkLeft");
-                    lastDirection = "Left";
-                }
-            }
-            else
-            {
-                if (moveInput.y > 0)
-                {
-                    animator.Play("WalkUp");
-                    lastDirection = "Up";
-                }
-                else
-                {
-                    animator.Play("WalkDown");
-                    lastDirection = "Down";
-                }
-            }
+            string direction = GetDirection(moveInput);
+            animator.Play("Walk" + direction);
+            lastDirection = direction;
+            return;
         }
-        else if (!isSleeping)
+
+        // Idle state
+        if (!isSleeping)
         {
             animator.Play("Idle" + lastDirection);
         }
     }
-    
+
+    private string GetDirection(Vector2 moveInput)
+    {
+        if (Mathf.Abs(moveInput.x) >= Mathf.Abs(moveInput.y))
+            return moveInput.x > 0 ? "Right" : "Left";
+
+        return moveInput.y > 0 ? "Up" : "Down";
+    }
+
     public void EnterSleep()
     {
         isSleeping = true;
