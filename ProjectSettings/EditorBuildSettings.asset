@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/HomeOutdoors.unity
+    path: Assets/Luminbloom/Design/Scenes/MainMenu.unity
+    guid: 4f6f93bcae68d4767b469fa5177859f4
+  - enabled: 1
+    path: Assets/Luminbloom/Design/Scenes/HomeOutdoors.unity
     guid: 5d5640afb7cac48598e57752c4a6c16a
   - enabled: 1
-    path: Assets/Scenes/VillageScene.unity
-    guid: 90cf0d27a1c9b48adaaf24e8f04df31f
+    path: Assets/Luminbloom/Design/Scenes/VillageScene.unity
+    guid: 48d2489cfb1e64b55996d58d47997d53
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9360a9069dd55450abf5557e70cc6f13, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
